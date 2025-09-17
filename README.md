@@ -278,10 +278,10 @@ The delete feature is currently **missing**. I am still working on the proper *a
 
 This project has been a **valuable learning experience**. Although I've used *AI to assist in development* and have limited prior experience with **TypeScript** and **Next.js**, my background with *SvelteKit* has helped me understand the data flow. 
 
-I have learned a great deal and am confident that with a **couple more weeks**, I can complete the remaining work with a *thorough understanding* of the technologies used.
+I have learned a great deal and am confident that with a **couple more weeks**, I can complete the remaining work with a *moderate understanding* of the technologies used in this project.
 
 ### Key Learnings
-- **Data flow patterns** from SvelteKit background
+- **Data flow patterns** 
 - **TypeScript** and **Next.js** fundamentals
 - *AI-assisted development* workflows
 - Authentication and authorization concepts
