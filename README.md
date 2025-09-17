@@ -237,15 +237,6 @@ npm run dev
 5. **Access the app:**
 Open [http://localhost:3000](http://localhost:3000)
 
-## 🧪 Testing
-
-```bash
-# Run tests
-npm test
-
-# Run with watch mode
-npm run test:watch
-```
 
 ## 📊 Database Schema
 
