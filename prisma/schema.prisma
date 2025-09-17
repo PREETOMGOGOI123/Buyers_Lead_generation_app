@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  buyers    Buyer[]
+  history   BuyerHistory[]
+}
+
+model Buyer {
+  id           String   @id @default(uuid())
+  fullName     String
+  email        String?
+  phone        String
+  city         String   // Chandigarh|Mohali|Zirakpur|Panchkula|Other
+  propertyType String   // Apartment|Villa|Plot|Office|Retail
+  bhk          String?  // 1|2|3|4|Studio
+  purpose      String   // Buy|Rent
+  budgetMin    Int?
+  budgetMax    Int?
+  timeline     String   // 0-3m|3-6m|>6m|Exploring
+  source       String   // Website|Referral|Walk-in|Call|Other
+  status       String   @default("New") // New|Qualified|Contacted|Visited|Negotiation|Converted|Dropped
+  notes        String?
+  tags         String   @default("[]") // JSON array stored as string
+  
+  ownerId      String
+  owner        User     @relation(fields: [ownerId], references: [id])
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  history      BuyerHistory[]
+  
+  @@index([ownerId])
+  @@index([status])
+  @@index([city])
+  @@index([propertyType])
+}
+
+model BuyerHistory {
+  id         String   @id @default(uuid())
+  buyerId    String
+  buyer      Buyer    @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  changedBy  String
+  user       User     @relation(fields: [changedBy], references: [id])
+  changedAt  DateTime @default(now())
+  diff       String   // JSON object of changed fields
+  
+  @@index([buyerId])
+}
